@@ -31,5 +31,5 @@ set(CMAKE_CXX_FLAGS "-g")
 
 ## Tracker executable
 add_executable(opencv_tracker src/people_tracker.cpp)
-add_dependencies(opencv_tracker ${catkin_EXPORTED_TARGETS})
+add_dependencies(opencv_tracker ${catkin_EXPORTED_TARGETS} person_tracker_generate_messages_cpp)
 target_link_libraries(opencv_tracker ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} rt)
