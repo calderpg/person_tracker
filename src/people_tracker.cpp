@@ -96,6 +96,7 @@ public:
         image_sub_ = it_.subscribe(rgb_camera_topic, 1, &PeopleDetector::imageCb, this);
         depth_sub_ = it_.subscribe(depth_camera_topic, 1, &PeopleDetector::depthCb, this);
         cv::namedWindow(COLORWINDOW);
+        ROS_INFO("Startup complete");
     }
 
     ~PeopleDetector()
@@ -121,7 +122,7 @@ public:
             ROS_ERROR("cv_bridge exception: %s", e.what());
             return;
         }
-        depth_ptr = cv_ptr;
+        depth_ptr = cv_bridge::CvImagePtr(cv_ptr);
         depthimage = cv_ptr->image;
         //cvShowImage(DEPTHWINDOW, &depthimage);
         cvWaitKey(3);
@@ -561,6 +562,7 @@ public:
 int main(int argc, char** argv)
 {
     ros::init(argc, argv, "opencv_tracker");
+    ROS_INFO("Starting opencv_tracker...");
     ros::NodeHandle nh;
     ros::NodeHandle nhp("~");
     std::string rgb_camera_topic;
