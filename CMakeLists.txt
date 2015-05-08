@@ -10,7 +10,7 @@ find_package(OpenCV REQUIRED)
 ################################################
 
 ## Generate messages
-add_message_files(DIRECTORY msg FILES SkeletonTrack.msg TrackedPerson.msg TrackerState.msg)
+add_message_files(DIRECTORY msg FILES SkeletonTrack.msg TrackedPerson.msg TrackerState.msg HandTrack.msg FingerTrack.msg)
 
 ## Generate added messages and services with any dependencies listed here
 generate_messages(DEPENDENCIES geometry_msgs sensor_msgs std_msgs)
@@ -31,5 +31,5 @@ set(CMAKE_CXX_FLAGS "-g")
 
 ## Tracker executable
 add_executable(opencv_tracker src/people_tracker.cpp)
-add_dependencies(opencv_tracker ${catkin_EXPORTED_TARGETS} person_tracker_generate_messages_cpp)
+add_dependencies(opencv_tracker ${catkin_EXPORTED_TARGETS} ${PROJECT_NAME}_gencpp)
 target_link_libraries(opencv_tracker ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} rt)

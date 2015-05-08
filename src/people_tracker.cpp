@@ -195,7 +195,7 @@ public:
         return kf;
     }
 
-    void drawHist(cv::MatND& hist,int hbins = 40,int sbins = 40,char* name = "H-S Histogram")
+    void drawHist(cv::MatND& hist,int hbins = 40,int sbins = 40,char* name = (char*)"H-S Histogram")
     {
         double maxVal=0;
         minMaxLoc(hist, 0, &maxVal, 0, 0);
